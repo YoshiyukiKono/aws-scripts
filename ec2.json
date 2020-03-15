@@ -1,0 +1,50 @@
+{
+    "ImageId": "ami-4dd5522b",
+    "KeyName": "ykono-pse-demo-tokyo",
+    "SecurityGroupIds": [
+         "sg-09b9eb8da35136437"
+    ],
+    "InstanceType": "t2.2xlarge",
+    "BlockDeviceMappings": [
+        {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+                "VolumeSize": 50,
+                "DeleteOnTermination": true,
+                "VolumeType": "gp2"
+            },
+            "NoDevice": ""
+        }
+        ,
+        {
+            "DeviceName": "/dev/sdf",
+            "Ebs": {
+                "VolumeSize": 500,
+                "DeleteOnTermination": true,
+                "VolumeType": "gp2"
+            },
+            "NoDevice": ""
+        }
+        ,
+        {
+            "DeviceName": "/dev/sdg",
+            "Ebs": {
+                "VolumeSize": 500,
+                "DeleteOnTermination": true,
+                "VolumeType": "gp2"
+            },
+            "NoDevice": ""
+        }
+    ],
+    "Monitoring": {
+        "Enabled": false
+    },
+    "SubnetId": "subnet-0d59417c21c96386c",
+    "DisableApiTermination": true,
+    "NetworkInterfaces": [
+        {
+            "DeviceIndex": 0,
+            "AssociatePublicIpAddress": true
+        }
+    ]
+}
