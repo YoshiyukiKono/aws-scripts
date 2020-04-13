@@ -19,3 +19,25 @@ yum -y update
 
 # Reboot for the timezone change
 #shutdown -r now
+
+#Use ntpd instead of chrony
+#And Use Amazon Time Sync Service mainly - https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/set-time.html
+function setup_chrony_w_amazon_time_sync() {
+  yum erase -y ntp
+  yum install -y chrony
+  sed -i -e '/^server/d' /etc/chrony.conf
+  echo "server 169.254.169.123 prefer iburst" >> /etc/chrony.conf
+  echo "server 169.254.169.254 iburst" >> /etc/chrony.conf
+  echo "server time.google.com iburst" >> /etc/chrony.conf
+  cat /etc/chrony.conf
+  service ntpd stop
+  systemctl stop chronyd
+  systemctl start chronyd
+  systemctl status chronyd
+
+  chronyc tracking
+  chronyc sources
+  chronyc sourcestats
+}
+
+setup_chrony_w_amazon_time_sync
