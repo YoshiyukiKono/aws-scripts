@@ -4,7 +4,7 @@ LANG=c date +%Y%m%d
 
 KEY_NAME=~/ykono-pse-demo-tokyo
 
-CLI_INPUT_JSON=file://ec2-1a.json
+CLI_INPUT_JSON=file://instance_base.json
 
 TAG_DATE=`LANG=c date +%Y%m%d`
 TAG_DATE_TIME=`LANG=c date +%Y%m%d_%H%M`
@@ -12,25 +12,11 @@ TAG_ENDDATE=`LANG=c date -v +7d +%m%d%Y`
 TAG_PROJECT=cdp_workshop
 TAG_OWNER=ykono@cloudera.com
 
-INSTANCE_NAME=ykono-single-cluster
+INSTANCE_NAME=ykono-cluster-base
 INSTANCE_FULLNAME="${INSTANCE_NAME}_${TAG_DATE_TIME}"
 
-INSTANCE_TYPE=t2.2xlarge
+INSTANCE_TYPE=m5.large
 
-# GPU Instance (PAY ATTENTION TO THE COST!)
-# P3 - NVIDIA Tesla V100 GPU
-# P2 - NVIDIA K80 GPU
-# G3 - NVIDIA Tesla M60 GPU
-
-# 1GPU vCPU 4, RAM 61G 0.900USD/hr -- 4vCPU would cause insufficient resource for CDSW
-#INSTANCE_TYPE_CDSW_GPU=p2.xlarge
-# 8GPU vCPU 32, RAM 488G 7.200USD/hr
-#INSTANCE_TYPE_CDSW_GPU=p2.8xlarge
-# 16GPU vCPU 64, RAM 732G 14.400USD/hr
-#INSTANCE_TYPE_CDSW_GPU=p2.16xlarge
-
-#INSTANCE_TYPE=$INSTANCE_TYPE_CDSW_GPU
-#INSTANCE_TYPE=$INSTANCE_TYPE_CDSW
 
 TAG_SPECS="ResourceType=instance,Tags=[\
 {Key=Name,Value=${INSTANCE_FULLNAME}},\
@@ -117,7 +103,7 @@ EOF
 }
 
 #NODES=(CM Master1 Worker1 Worker2 Worker3 CDSW)
-NODES=(CM Master1 Worker1)
+NODES=(Master1 Master2 Master3 Worker1 Worker2 Worker3 Edge)
 for node in ${NODES[@]}
 do
   create_instance $node
