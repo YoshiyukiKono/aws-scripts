@@ -1,0 +1,4 @@
+*.log
+my_cloudera_license.txt
+passwordless_*.sh
+login_*.sh
