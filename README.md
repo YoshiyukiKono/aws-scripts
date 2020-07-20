@@ -6,6 +6,9 @@ https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv2-mac.html
 - aws cli install
 - aws cli configure
 
+https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey_CLIAPI
+- Create Access Key
+
 https://qiita.com/ir-yk/items/af8550fea92b5c5f7fca
 - `ssh-keygen -t rsa`
 
